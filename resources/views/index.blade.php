@@ -17,6 +17,7 @@
                     <th>Title</th>
                     <th>Category Name</th>
                     <th>Description</th>
+                    <th>Tags</th>
                     <th>Aggiorna</th>
                     <th>Delete</th>
                 </tr>
@@ -28,6 +29,15 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->category->title }}</td>
                     <td>{{ \Illuminate\Support\Str::limit($post->postInformation->description, $limit = 30, $end = '...') }}</td>
+                    <td>
+                        <table>
+                            <tbody>
+                                @foreach ($post -> tags as $tag)
+                                    <td>#{{$tag -> title}}</td>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </td>
                     <td>
                         <a class="btn btn-success" href="{{ route('posts.edit', $post) }}">Aggiorna</a>
                     </td>
